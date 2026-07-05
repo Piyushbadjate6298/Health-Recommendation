@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HealthReco is a dynamic health recommendation portal for patients and doctors." />
+  <title>HealthReco | Dynamic Health Recommendation System</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span>HR</span>HealthReco</a>
+    <nav aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#login">Login</a>
+    </nav>
+  </header>
+
+  <main id="home" class="hero">
+    <section class="hero-text">
+      <p class="badge">Dynamic patient and doctor platform</p>
+      <h1>Daily health guidance with backend APIs, doctor review, and a smart patient chatbot.</h1>
+      <p class="subtitle">HealthReco now runs with a real backend API, persistent patient requests, modular frontend pages, and deployable project structure.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#login">Start Demo</a>
+        <a class="btn ghost" href="#features">Explore Features</a>
+      </div>
+      <div class="trust-row" aria-label="Project highlights">
+        <span>Backend APIs</span>
+        <span>Patient and doctor modules</span>
+        <span>Deployable Node app</span>
+      </div>
+    </section>
+    <section class="hero-panel" aria-label="HealthReco preview">
+      <div class="care-card main-care">
+        <p class="card-kicker">Live API project</p>
+        <h2>Frontend + Backend</h2>
+        <p>Pages call APIs for issues, chatbot answers, requests, and doctor notes.</p>
+      </div>
+      <div class="mini-grid">
+        <article><b>/api/issues</b><span>Health recommendation content</span></article>
+        <article><b>/api/chat</b><span>Chatbot response engine</span></article>
+        <article><b>/api/requests</b><span>Patient consultation queue</span></article>
+        <article><b>/api/advice</b><span>Doctor notes persistence</span></article>
+      </div>
+    </section>
+  </main>
+
+  <section id="features" class="section">
+    <div class="section-head">
+      <p class="badge">Freelancer-ready structure</p>
+      <h2>Separated modules, dynamic APIs, and clean deployment</h2>
+      <p>The frontend is split into page-specific files and reusable modules. The backend controls data, chatbot logic, patient requests, and doctor notes.</p>
+    </div>
+    <div class="feature-grid">
+      <article><b>Frontend Folder</b><p>HTML pages, CSS, API client, and UI modules are separated clearly.</p></article>
+      <article><b>Backend Folder</b><p>Node server with controllers, routes, services, and JSON database.</p></article>
+      <article><b>Doctor Workflow</b><p>Patient requests are created through API and reviewed in the doctor dashboard.</p></article>
+      <article><b>Chatbot API</b><p>Chat messages are answered by backend medical-safety logic.</p></article>
+    </div>
+  </section>
+
+  <section id="workflow" class="workflow">
+    <div>
+      <p class="badge">How it works</p>
+      <h2>Dynamic flow from login to doctor review</h2>
+    </div>
+    <ol class="workflow-list">
+      <li><b>Patient logs in</b><span>The frontend sends a login request to the backend.</span></li>
+      <li><b>Patient asks or submits</b><span>Health cards and chatbot answers come from API modules.</span></li>
+      <li><b>Doctor reviews</b><span>The dashboard reads requests from backend storage.</span></li>
+    </ol>
+  </section>
+
+  <section id="login" class="login-section" aria-label="Login portals">
+    <form class="login-card patient-card" id="patientLoginForm">
+      <div class="login-icon">P</div>
+      <h2>Patient Login</h2>
+      <p>Use any name and password for the demo portal.</p>
+      <input id="patientName" autocomplete="name" placeholder="Patient name" required />
+      <input id="patientPassword" placeholder="Password" type="password" required />
+      <button type="submit">Login as Patient</button>
+    </form>
+    <form class="login-card doctor-card" id="doctorLoginForm">
+      <div class="login-icon doctor">D</div>
+      <h2>Doctor Login</h2>
+      <p>Open the review dashboard for patient requests.</p>
+      <input id="doctorName" autocomplete="name" placeholder="Doctor name" required />
+      <input id="doctorPassword" placeholder="Password" type="password" required />
+      <button type="submit">Login as Doctor</button>
+    </form>
+  </section>
+
+  <footer>
+    <span>HealthReco 2026</span>
+    <span>Educational health guidance only. Not a replacement for a qualified doctor.</span>
+  </footer>
+  <script type="module" src="/assets/js/pages/home.js"></script>
+</body>
+</html>

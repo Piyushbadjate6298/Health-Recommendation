@@ -1,0 +1,10 @@
+{
+  "name": "health-recommendation-system",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Dynamic HealthReco project with separated frontend and backend folders.",
+  "scripts": {
+    "dev": "node backend/src/server.js",
+    "start": "node backend/src/server.js"
+  }
+}
