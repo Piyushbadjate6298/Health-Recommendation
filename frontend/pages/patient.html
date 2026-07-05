@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Dashboard | HealthReco</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span>HR</span>Patient Care</a>
+    <nav aria-label="Patient navigation">
+      <a href="#assistant" id="openChatLink">AI Health Chat</a>
+      <a href="#request">Consult Doctor</a>
+      <a href="/">Logout</a>
+    </nav>
+  </header>
+
+  <section class="dashboard-head patient-head">
+    <div>
+      <p class="badge">Welcome, <span id="showPatient">Patient</span></p>
+      <h1>Your dynamic health support desk</h1>
+      <p>Search backend-loaded health concerns, check safer first-care steps, then send a request to the doctor API.</p>
+    </div>
+    <div class="dashboard-actions">
+      <input id="searchIssue" placeholder="Search fever, cough, acidity..." />
+      <button type="button" id="openRequestBtn">Send Doctor Request</button>
+    </div>
+  </section>
+
+  <section class="safety-strip" aria-label="Emergency notice">
+    <b>Emergency?</b>
+    <span>Chest pain, severe breathing trouble, fainting, seizures, severe bleeding, stroke signs, or self-harm thoughts need urgent local emergency care now.</span>
+  </section>
+
+  <section class="issue-grid" id="issueGrid" aria-label="Health recommendation cards"></section>
+
+  <section id="request" class="consult-section">
+    <div class="section-head left">
+      <p class="badge">Doctor request</p>
+      <h2>Share a concise consultation note</h2>
+      <p>This submits through the backend and appears in the doctor dashboard.</p>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <div class="form-grid">
+        <label>Health concern<input id="requestConcern" placeholder="Example: fever with body pain" required /></label>
+        <label>Duration<input id="requestDuration" placeholder="Example: 2 days" required /></label>
+        <label>Urgency
+          <select id="requestUrgency">
+            <option value="Routine">Routine</option>
+            <option value="Soon">Soon</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+        </label>
+      </div>
+      <label>Details<textarea id="requestDetails" placeholder="Mention age group, temperature, medicines taken, allergies, and warning signs." required></textarea></label>
+      <button type="submit">Send to Doctor Dashboard</button>
+      <p class="form-status" id="requestStatus" role="status"></p>
+    </form>
+  </section>
+
+  <div class="floating-chat" id="assistant">
+    <div class="chat-window chat-widget" id="chatWidget" aria-label="Patient health chatbot">
+      <div class="chat-header">
+        <div class="bot-avatar">AI</div>
+        <div><b>HealthReco Assistant</b><span>Backend-powered guidance</span></div>
+        <button type="button" class="chat-close" id="closeChatBtn" aria-label="Close chat">x</button>
+      </div>
+      <div class="chat-safety">For emergencies, contact local emergency services. Do not use this chatbot for diagnosis.</div>
+      <div class="quick-prompts" id="quickPrompts"></div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <form class="chat-form" id="chatForm">
+        <input id="chatInput" autocomplete="off" placeholder="Ask a health question..." />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <button type="button" class="bot-launcher" id="botToggle" aria-label="Open health chatbot">
+      <span class="bot-face">AI</span>
+      <span class="bot-label">Chat</span>
+    </button>
+  </div>
+
+  <div class="modal" id="resultModal">
+    <div class="modal-box">
+      <button id="close-modal-btn" class="close" aria-label="Close recommendation">x</button>
+      <div id="recommendation"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/assets/js/pages/patient.js"></script>
+</body>
+</html>

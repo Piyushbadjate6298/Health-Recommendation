@@ -1,0 +1,23 @@
+{
+  "requests": [
+    {
+      "id": "req-1783264850870",
+      "patient": "Demo Patient",
+      "concern": "Cough and fever",
+      "duration": "3 days",
+      "urgency": "Soon",
+      "details": "Dry cough with mild fever.",
+      "status": "Waiting review",
+      "createdAt": "2026-07-05T15:20:50.870Z"
+    }
+  ],
+  "advice": "",
+  "users": [
+    {
+      "id": "patient-1783264850776",
+      "name": "Demo Patient",
+      "role": "patient",
+      "loggedInAt": "2026-07-05T15:20:50.778Z"
+    }
+  ]
+}

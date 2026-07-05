@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Dashboard | HealthReco</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span>HR</span>Doctor Desk</a>
+    <nav aria-label="Doctor navigation">
+      <a href="#requests">Requests</a>
+      <a href="#advice">Advice Note</a>
+      <a href="/">Logout</a>
+    </nav>
+  </header>
+
+  <section class="dashboard-head doctor-head">
+    <div>
+      <p class="badge">Welcome, Dr. <span id="showDoctor">Doctor</span></p>
+      <h1>Dynamic patient consultation panel</h1>
+      <p>Review patient requests from the backend API, identify urgency, and prepare practical follow-up advice.</p>
+    </div>
+    <div class="doctor-summary">
+      <b>Clinical reminder</b>
+      <span>Confirm symptoms, vitals, allergies, and medicine history before giving medical advice.</span>
+    </div>
+  </section>
+
+  <main class="doctor-panel">
+    <section class="stats" aria-label="Dashboard stats">
+      <article><h3 id="totalPatients">0</h3><p>Total Requests</p></article>
+      <article><h3 id="urgentPatients">0</h3><p>Urgent</p></article>
+      <article><h3 id="routinePatients">0</h3><p>Routine/Soon</p></article>
+    </section>
+
+    <section id="requests" class="request-section">
+      <div class="section-title-row">
+        <h2>Recent patient requests</h2>
+        <button type="button" id="seedRequestsBtn">Load Sample Requests</button>
+      </div>
+      <div class="request-list" id="requestList"></div>
+    </section>
+
+    <section id="advice" class="advice-box">
+      <h2>Doctor advice note</h2>
+      <p>Select a request, write a short note, and save it through the backend.</p>
+      <textarea id="doctorNote" placeholder="Write general advice, recommended tests, or follow-up instructions..."></textarea>
+      <button type="button" id="saveAdviceBtn">Save Advice</button>
+      <p class="form-status" id="doctorStatus" role="status"></p>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/js/pages/doctor.js"></script>
+</body>
+</html>
