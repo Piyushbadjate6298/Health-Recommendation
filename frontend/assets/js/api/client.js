@@ -1,5 +1,11 @@
+const API_URL = 'https://health-recommendation-n6fk.onrender.com';
+
+function apiPath(path) {
+  return `${API_URL}${path}`;
+}
+
 async function request(path, options = {}) {
-  const response = await fetch(path, {
+  const response = await fetch(apiPath(path), {
     headers: {
       'Content-Type': 'application/json',
       ...(options.headers || {})
