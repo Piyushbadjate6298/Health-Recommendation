@@ -19,7 +19,7 @@ async function handleApi(request, response, pathname) {
     }
 
     if (request.method === 'POST' && pathname === '/api/auth/login') {
-      login(request, response, await parseBody(request));
+      await login(request, response, await parseBody(request));
       return true;
     }
 
@@ -34,33 +34,33 @@ async function handleApi(request, response, pathname) {
     }
 
     if (request.method === 'GET' && pathname === '/api/requests') {
-      getRequests(request, response);
+      await getRequests(request, response);
       return true;
     }
 
     if (request.method === 'POST' && pathname === '/api/requests') {
-      createRequest(request, response, await parseBody(request));
+      await createRequest(request, response, await parseBody(request));
       return true;
     }
 
     if (request.method === 'POST' && pathname === '/api/requests/seed') {
-      seedRequests(request, response);
+      await seedRequests(request, response);
       return true;
     }
 
     if (request.method === 'PATCH' && pathname.startsWith('/api/requests/') && pathname.endsWith('/review')) {
       const id = pathname.split('/')[3];
-      markReviewed(request, response, id);
+      await markReviewed(request, response, id);
       return true;
     }
 
     if (request.method === 'GET' && pathname === '/api/advice') {
-      getAdvice(request, response);
+      await getAdvice(request, response);
       return true;
     }
 
     if (request.method === 'POST' && pathname === '/api/advice') {
-      saveAdvice(request, response, await parseBody(request));
+      await saveAdvice(request, response, await parseBody(request));
       return true;
     }
 

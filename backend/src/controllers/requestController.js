@@ -1,4 +1,11 @@
-const { readDb, updateDb } = require('../services/database');
+const {
+  createPatientRequest,
+  getAdviceText,
+  listRequests,
+  markRequestReviewed,
+  saveAdviceText,
+  seedPatientRequests
+} = require('../services/database');
 const { sendJson } = require('../utils/http');
 
 const sampleRequests = [
@@ -38,12 +45,12 @@ function clean(value, fallback = '') {
   return String(value || fallback).trim().slice(0, 500);
 }
 
-function getRequests(request, response) {
-  const db = readDb();
-  sendJson(response, 200, { requests: db.requests || [] });
+async function getRequests(request, response) {
+  const requests = await listRequests();
+  sendJson(response, 200, { requests });
 }
 
-function createRequest(request, response, body) {
+async function createRequest(request, response, body) {
   const patientRequest = {
     id: `req-${Date.now()}`,
     patient: clean(body.patient, 'Patient').slice(0, 60),
@@ -55,46 +62,29 @@ function createRequest(request, response, body) {
     createdAt: new Date().toISOString()
   };
 
-  updateDb((db) => {
-    db.requests = [patientRequest, ...(db.requests || [])].slice(0, 50);
-    return db;
-  });
+  await createPatientRequest(patientRequest);
 
   sendJson(response, 201, { request: patientRequest });
 }
 
-function markReviewed(request, response, id) {
-  const updated = updateDb((db) => {
-    db.requests = (db.requests || []).map((item) =>
-      item.id === id ? { ...item, status: 'Reviewed', reviewedAt: new Date().toISOString() } : item
-    );
-    return db;
-  });
-
-  sendJson(response, 200, { requests: updated.requests || [] });
+async function markReviewed(request, response, id) {
+  const requests = await markRequestReviewed(id);
+  sendJson(response, 200, { requests });
 }
 
-function seedRequests(request, response) {
-  const updated = updateDb((db) => {
-    const existing = (db.requests || []).filter((item) => !String(item.id).startsWith('sample-'));
-    db.requests = [...sampleRequests, ...existing];
-    return db;
-  });
-
-  sendJson(response, 200, { requests: updated.requests || [] });
+async function seedRequests(request, response) {
+  const requests = await seedPatientRequests(sampleRequests);
+  sendJson(response, 200, { requests });
 }
 
-function getAdvice(request, response) {
-  const db = readDb();
-  sendJson(response, 200, { advice: db.advice || '' });
+async function getAdvice(request, response) {
+  const advice = await getAdviceText();
+  sendJson(response, 200, { advice });
 }
 
-function saveAdvice(request, response, body) {
+async function saveAdvice(request, response, body) {
   const note = clean(body.advice, '').slice(0, 1500);
-  updateDb((db) => {
-    db.advice = note;
-    return db;
-  });
+  await saveAdviceText(note);
   sendJson(response, 200, { advice: note });
 }
 

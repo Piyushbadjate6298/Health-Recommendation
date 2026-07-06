@@ -1,11 +1,11 @@
-const { updateDb } = require('../services/database');
+const { createUser } = require('../services/database');
 const { sendJson } = require('../utils/http');
 
 function sanitizeName(name, fallback) {
   return String(name || fallback).trim().replace(/\s+/g, ' ').slice(0, 40) || fallback;
 }
 
-function login(request, response, body) {
+async function login(request, response, body) {
   const role = body.role === 'doctor' ? 'doctor' : 'patient';
   const user = {
     id: `${role}-${Date.now()}`,
@@ -14,10 +14,7 @@ function login(request, response, body) {
     loggedInAt: new Date().toISOString()
   };
 
-  updateDb((db) => {
-    db.users = [user, ...(db.users || [])].slice(0, 50);
-    return db;
-  });
+  await createUser(user);
 
   sendJson(response, 200, { user });
 }
